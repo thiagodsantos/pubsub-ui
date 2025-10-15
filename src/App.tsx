@@ -1,40 +1,34 @@
-import { Table, Flex, Spacer } from "@chakra-ui/react"
+import { Table, Flex, Button } from "@chakra-ui/react"
 
 function App() {
   return (
-    <Flex direction="row" p={10} gap="2" align="center">
-      <Table.Root size="sm" width={"25%"}>
+    <Flex direction="row" p={10} gap="2">
+      <Table.Root size="sm" width={"25%"} interactive>
         <Table.Header>
           <Table.Row bg="gray.100">
-            <Table.ColumnHeader fontWeight="bold">Product</Table.ColumnHeader>
-            <Table.ColumnHeader fontWeight="bold">Category</Table.ColumnHeader>
-            <Table.ColumnHeader fontWeight="bold" textAlign="end">Price</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight="bold">Topics</Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {items.map((item) => (
             <Table.Row key={item.id}>
               <Table.Cell>{item.name}</Table.Cell>
-              <Table.Cell>{item.category}</Table.Cell>
-              <Table.Cell textAlign="end">{item.price}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
       </Table.Root>
-      <Table.Root size="sm">
+      <Table.Root size="sm" width={"100%"} interactive>
         <Table.Header>
-          <Table.Row>
-            <Table.ColumnHeader>Product</Table.ColumnHeader>
-            <Table.ColumnHeader>Category</Table.ColumnHeader>
-            <Table.ColumnHeader textAlign="end">Price</Table.ColumnHeader>
+          <Table.Row bg="gray.100">
+            <Table.ColumnHeader fontWeight="bold">Message</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight="bold">Actions</Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {items.map((item) => (
             <Table.Row key={item.id}>
-              <Table.Cell>{item.name}</Table.Cell>
               <Table.Cell>{item.category}</Table.Cell>
-              <Table.Cell textAlign="end">{item.price}</Table.Cell>
+              <Table.Cell width={"100px"}><Button variant="subtle" size="sm" colorPalette={"blue"}>Ack</Button></Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
