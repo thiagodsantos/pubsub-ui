@@ -19,14 +19,11 @@ services:
 
   firebase-emulator:
     container_name: pubsub-ui-firebase-emulator
-    image: google/cloud-sdk:alpine
+    image: google/cloud-sdk:emulators
     ports:
       - "4000:4000"
       - "8080:8080"
       - "9000:9000"
     volumes:
-      - ./firebase:/firebase
-    command: >
-      bash -c "
-      gcloud components install pubsub-emulator &&
-      gcloud beta emulators pubsub start --project=pubsub-ui" 
+      - ./firebase:/app
+    command: gcloud beta emulators pubsub start
