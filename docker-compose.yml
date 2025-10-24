@@ -1,25 +1,32 @@
 services:
   backend:
     container_name: pubsub-ui-backend
-    build: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
       - ./backend:/app
+      - /app/node_modules
 
   frontend:
     container_name: pubsub-ui-frontend
-    image: node:lts
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "5173:5173"
     volumes:
       - ./frontend:/app
-    command: npm run dev
+      - /app/node_modules
 
   firebase-emulator:
-    profiles: ["dev"]
-    build: firebase
     container_name: pubsub-ui-firebase-emulator
+    build:
+      context: ./firebase-emulator
+      dockerfile: Dockerfile
+    profiles: ["dev"]
     ports:
       - "8085:8085"
     

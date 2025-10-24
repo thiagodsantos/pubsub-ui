@@ -5,10 +5,10 @@ WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
 
-RUN npm i -g @nestjs/cli && npm install
+RUN npm install -g vite && npm install
 
 COPY . ./
 
-EXPOSE 3000
+EXPOSE 5173
 
-CMD ["npm", "run", "start:dev"]
+CMD ["npm", "run", "dev", "--", "--host"]
