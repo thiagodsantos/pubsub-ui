@@ -1,12 +1,11 @@
 services:
   backend:
     container_name: pubsub-ui-backend
-    build: ./backend
+    build: backend
     ports:
       - "3000:3000"
     volumes:
       - ./backend:/app
-    command: npm run start:dev
 
   frontend:
     container_name: pubsub-ui-frontend
@@ -18,12 +17,9 @@ services:
     command: npm run dev
 
   firebase-emulator:
+    profiles: ["dev"]
+    build: firebase
     container_name: pubsub-ui-firebase-emulator
-    image: google/cloud-sdk:emulators
     ports:
-      - "4000:4000"
-      - "8080:8080"
-      - "9000:9000"
-    volumes:
-      - ./firebase:/app
-    command: gcloud beta emulators pubsub start
+      - "8085:8085"
+    
