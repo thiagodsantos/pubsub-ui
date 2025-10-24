@@ -1,8 +1,20 @@
 import { Table, Flex, Button } from "@chakra-ui/react"
 
+
+const eventSource = new EventSource('http://localhost:3000/sse');
+
+eventSource.onmessage = function(event) {
+  console.log('Mensagem recebida:', event.data);
+};
+
+eventSource.onerror = function(error) {
+  console.error('Erro no SSE:', error);
+};
+
 function App() {
   return (
     <Flex direction="row" p={10} gap="2">
+      <Button ></Button>
       <Table.Root size="sm" width={"25%"} interactive>
         <Table.Header>
           <Table.Row bg="gray.100">

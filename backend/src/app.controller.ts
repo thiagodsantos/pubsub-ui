@@ -1,12 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, OnModuleInit } from '@nestjs/common';
 import { AppService } from './app.service';
+import { PubSubService } from 'src/pubsub.service';
 
 @Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export class AppController implements OnModuleInit {
+  constructor(private readonly appService: AppService, private readonly pubSubService: PubSubService) {}
+
+  async onModuleInit() {
+    console.log('AppController initialized');
+  }
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  async getHello(): Promise<void> {
+    console.log('Subscribing to topic...');
+    await this.pubSubService.pullMessagesManual();
   }
 }

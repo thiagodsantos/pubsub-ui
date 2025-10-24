@@ -23,8 +23,9 @@ services:
 
   firebase-emulator:
     container_name: pubsub-ui-firebase-emulator
+    network_mode: "host"
     build:
-      context: ./firebase-emulator
+      context: ./firebase
       dockerfile: Dockerfile
     profiles: ["dev"]
     ports:

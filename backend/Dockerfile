@@ -1,11 +1,13 @@
 FROM node:lts-alpine
 
-WORKDIR /app
+WORKDIR /usr/src/app
+
+RUN npm i -g @nestjs/cli
 
 COPY package.json ./
 COPY package-lock.json ./
 
-RUN npm i -g @nestjs/cli && npm install
+RUN npm install
 
 COPY . ./
 
